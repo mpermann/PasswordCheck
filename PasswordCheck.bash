@@ -3,7 +3,7 @@
 # Name: PasswordCheck.bash
 # Version: 1.0
 # Created: 08-22-2022 by Michael Permann
-# Updated: 08-22-2022
+# Updated: 08-23-2022
 # The script is for checking whether the end user's password is a known password. Parameter 4 is the password
 # that needs to be checked. The current logged in user and results of the password validation are written to 
 # a plist file to be read from later with an extension attribute.
@@ -12,6 +12,7 @@ CURRENT_USER=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /
 USER_ID=$(/usr/bin/id -u "$CURRENT_USER")
 USER_PASS=$4
 PLIST="/Library/Application Support/HeartlandAEA11/Reporting/PasswordCheck.plist"
+DATE=$(/bin/date +'%H:%M %Y-%m-%d')
 
 isPasswordKnown() {
 PASSWORD_CHECK_RESULT=$(/usr/bin/dscl /Search -authonly "$CURRENT_USER" "$USER_PASS")
@@ -28,6 +29,7 @@ fi
 createPasswordCheckPlist() {
 /usr/libexec/PlistBuddy -c "Add :CurrentUser string $CURRENT_USER" "$PLIST"
 /usr/libexec/PlistBuddy -c "Add :PasswordKnown string $RESULT" "$PLIST"
+/usr/libexec/PlistBuddy -c "Add :Date string $DATE" "$PLIST"
 echo "PasswordCheck file created."
 }
 
@@ -36,6 +38,7 @@ PasswordCheckPlistExists(){
     then
         /usr/libexec/PlistBuddy -c "Set :CurrentUser $CURRENT_USER" "$PLIST"
         /usr/libexec/PlistBuddy -c "Set :PasswordKnown $RESULT" "$PLIST"
+        /usr/libexec/PlistBuddy -c "Set :Date $DATE" "$PLIST"
     else
         createPasswordCheckPlist
     fi
