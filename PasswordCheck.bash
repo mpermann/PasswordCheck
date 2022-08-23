@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name: PasswordCheck.bash
-# Version: 1.0
+# Version: 1.0.1
 # Created: 08-22-2022 by Michael Permann
 # Updated: 08-23-2022
 # The script is for checking whether the end user's password is a known password. Parameter 4 is the password
