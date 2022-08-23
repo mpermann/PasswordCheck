@@ -16,7 +16,7 @@ DATE_STAMP=$(/usr/bin/defaults read "/Library/Application Support/HeartlandAEA11
 
 if [ -e "$PLIST" ]
     then
-        echo "<result>$USER_WHEN_RUN $PASSWORD_KNOWN $DATE_STAMP</result>"
+        echo "<result>$PASSWORD_KNOWN $USER_WHEN_RUN $DATE_STAMP</result>"
     else
         echo "<result>NA</result>"
 fi
