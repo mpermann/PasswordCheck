@@ -19,4 +19,4 @@ if [ -e "$PLIST" ]
         echo "<result>$USER_WHEN_RUN $PASSWORD_KNOWN $DATE_STAMP</result>"
     else
         echo "<result>NA</result>"
-    fi
+fi
