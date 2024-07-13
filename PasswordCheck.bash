@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Name: PasswordCheck.bash
-# Version: 1.0.1
+# Version: 1.0.2
 # Created: 08-22-2022 by Michael Permann
-# Updated: 08-23-2022
+# Updated: 07-13-2024
 # The script is for checking whether the end user's password is a known password. Parameter 4 is the password
 # that needs to be checked. The current logged in user and results of the password validation are written to 
 # a plist file to be read from later with an extension attribute.
@@ -11,7 +11,7 @@
 CURRENT_USER=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 USER_ID=$(/usr/bin/id -u "$CURRENT_USER")
 USER_PASS=$4
-PLIST="/Library/Application Support/HeartlandAEA11/Reporting/PasswordCheck.plist"
+PLIST="/Library/Management/PCC/Reports/PasswordCheck.plist"
 DATE=$(/bin/date +'%H:%M %Y-%m-%d')
 
 isPasswordKnown() {
